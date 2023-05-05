@@ -1,1 +1,38 @@
-iuz
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API-Abfrage</title>
+</head>
+<body>
+	<h1>API-Abfrage</h1>
+	<p id="response"></p>
+
+	<script>
+		// Setze die URL der API-Abfrage
+		const url = "https://api.paradigma.remoteportal.de/controllers/29402";
+
+		// Setze die Header-Parameter der API-Abfrage
+		const myHeaders = new Headers();
+		myHeaders.append("HTTP_ACCEPT", "application/json");
+		myHeaders.append("Accept", "api/v1");
+		myHeaders.append("Debug-user-agent", "Paradigma/DBG");
+		myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
+
+		// Setze die Optionen der API-Abfrage
+		const requestOptions = {
+			method: 'GET',
+			headers: myHeaders,
+			redirect: 'follow'
+		};
+
+		// Führe die API-Abfrage durch
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(data => {
+				// Zeige die Antwort auf der Internetseite an
+				document.getElementById("response").innerHTML = JSON.stringify(data);
+			})
+			.catch(error => console.log('error', error));
+	</script>
+</body>
+</html>
