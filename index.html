@@ -1,38 +1,102 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>API-Abfrage</title>
-</head>
-<body>
-	<h1>API-Abfrage</h1>
-	<p id="response"></p>
+var textbox1 = document.getElementById("text1");
+    var textbox2 = document.getElementById("text2");
+    var textbox3 = document.getElementById("text3");
+    var textbox4 = document.getElementById("text4");
+    const values = [];
 
-	<script>
-		// Setze die URL der API-Abfrage
-		const url = "https://api.paradigma.remoteportal.de/controllers/29402";
+    document.getElementById('connect').onclick = function () {
 
-		// Setze die Header-Parameter der API-Abfrage
-		const myHeaders = new Headers();
-		myHeaders.append("HTTP_ACCEPT", "application/json");
-		myHeaders.append("Accept", "api/v1");
-		myHeaders.append("Debug-user-agent", "Paradigma/DBG");
-		myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("HTTP_ACCEPT", "application/json");
+      myHeaders.append("Accept", "api/v1");
 
-		// Setze die Optionen der API-Abfrage
-		const requestOptions = {
-			method: 'GET',
-			headers: myHeaders,
-			redirect: 'follow'
-		};
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
 
-		// Führe die API-Abfrage durch
-		fetch(url, requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				// Zeige die Antwort auf der Internetseite an
-				document.getElementById("response").innerHTML = JSON.stringify(data);
-			})
-			.catch(error => console.log('error', error));
-	</script>
-</body>
-</html>
+      fetch("https://api.paradigma.remoteportal.de/controllers/49735/variable/589/value", requestOptions)
+        .then(response => savethis = response.json())
+        .then(result => {
+          values.push(result);
+          textbox1.value = values[0].value * 0.1 + " °C";
+          // textbox1.value = result.value * 0.1 + " °C";
+        })
+        .catch(error => console.log('error', error));
+
+
+      // 2nd. Call
+
+
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("HTTP_ACCEPT", "application/json");
+      myHeaders.append("Accept", "api/v1");
+
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+
+      fetch("https://api.paradigma.remoteportal.de/controllers/49735/variable/568/value", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          textbox2.value = result.value * 0.1 + " kW";
+        })
+        .catch(error => console.log('error', error));
+
+
+
+
+      // 3rd. Call
+
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("HTTP_ACCEPT", "application/json");
+      myHeaders.append("Accept", "api/v1");
+
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+
+      fetch("https://api.paradigma.remoteportal.de/controllers/49735/variable/573/value", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          textbox3.value = result.value * 0.1 + " kWh";
+        })
+        .catch(error => console.log('error', error));
+
+
+
+      // 4th Call
+
+
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("HTTP_ACCEPT", "application/json");
+      myHeaders.append("Accept", "api/v1");
+
+      var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+
+      fetch("https://api.paradigma.remoteportal.de/controllers/49735/variable/574/value", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          textbox4.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
+        })
+        .catch(error => console.log('error', error));
+
+
+    }
+
+
+    // document.getElementById("connect2").onclick = function () {
+
