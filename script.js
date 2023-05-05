@@ -8,7 +8,7 @@
     document.getElementById('connect').onclick = function () {
 
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
       myHeaders.append("HTTP_ACCEPT", "application/json");
       myHeaders.append("Accept", "api/v1");
 
@@ -32,7 +32,7 @@
 
 
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
       myHeaders.append("HTTP_ACCEPT", "application/json");
       myHeaders.append("Accept", "api/v1");
 
@@ -55,7 +55,7 @@
       // 3rd. Call
 
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
       myHeaders.append("HTTP_ACCEPT", "application/json");
       myHeaders.append("Accept", "api/v1");
 
@@ -78,7 +78,7 @@
 
 
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDEyMTQyOldhTjNldWhjeA==");
+      myHeaders.append("Authorization", "MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
       myHeaders.append("HTTP_ACCEPT", "application/json");
       myHeaders.append("Accept", "api/v1");
 
