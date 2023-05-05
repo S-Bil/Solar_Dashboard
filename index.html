@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Anlagen Daten</title>
+    <title>Formular</title>
   </head>
   <body>
-    <h1>Anlagen Daten</h1>
+    <h1>Formular</h1>
     <form>
       <label for="macadresse">MAC-Adresse:</label>
       <input type="text" id="macadresse" name="macadresse"><br>
@@ -32,7 +32,7 @@
         }
 
         // Rufe die API auf
-        const url = 'https://example.com/api/login';
+        const url = 'https://api.paradigma.remoteportal.de/controllers';
         const data = { macadresse, pass };
 
         fetch(url, {
@@ -46,6 +46,9 @@
         .then(data => {
           console.log('Antwort von API:', data);
           // Hier kannst du die Antwort der API weiterverarbeiten
+
+          // Weiterleitung zur neuen Seite
+          window.location.href = 'https://example.com/neue-seite';
         })
         .catch(error => {
           console.error('Fehler beim Aufruf der API:', error);
