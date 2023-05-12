@@ -45,7 +45,7 @@
       fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/568/value", requestOptions)
         .then(response => response.json())
         .then(result => {
-          textbox2.value = result.value * 0.1 + " kW";
+          textbox2.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
         })
         .catch(error => console.log('error', error));
 
@@ -68,7 +68,7 @@
       fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/573/value", requestOptions)
         .then(response => response.json())
         .then(result => {
-          textbox3.value = result.value * 0.1 + " kWh";
+          textbox3.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
         })
         .catch(error => console.log('error', error));
 
@@ -91,7 +91,7 @@
       fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/574/value", requestOptions)
         .then(response => response.json())
         .then(result => {
-          textbox4.value = result.value + " kWh";
+          textbox4.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
         })
         .catch(error => console.log('error', error));
 
