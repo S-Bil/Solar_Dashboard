@@ -88,7 +88,7 @@
         redirect: 'follow'
       };
 
-      fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/573/value", requestOptions)
+      fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/574/value", requestOptions)
         .then(response => response.json())
         .then(result => {
           textbox4.value = result.value * 0.1 + " kWh";
