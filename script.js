@@ -78,7 +78,7 @@
 
 
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
+      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
       myHeaders.append("HTTP_ACCEPT", "application/json");
       myHeaders.append("Accept", "api/v1");
 
