@@ -1,103 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API-Abfrage</title>
+</head>
+<body>
+  <div id="result"></div>
 
-    var textbox1 = document.getElementById("text1");
-    var textbox2 = document.getElementById("text2");
-    var textbox3 = document.getElementById("text3");
-    var textbox4 = document.getElementById("text4");
-    const values = [];
+  <script>
+    const username = "2CBE97003EBB";
+    const password = "vZpmxxwUw";
+    const authString = `${username}:${password}`;
+    const authHeader = "Basic " + btoa(authString);
 
-    document.getElementById('connect').onclick = function () {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", authHeader);
+    myHeaders.append("HTTP_ACCEPT", "application/json");
+    myHeaders.append("Accept", "api/v1");
+    myHeaders.append("Debug-user-agent", "Paradigma/DBG");
 
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
-      myHeaders.append("HTTP_ACCEPT", "application/json");
-      myHeaders.append("Accept", "api/v1");
+    const requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
 
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-      fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/589/value", requestOptions)
-        .then(response => savethis = response.json())
-        .then(result => {
-          values.push(result);
-          // textbox1.value = values[0].value * 0.1 + " °C";
-          textbox1.value = result.value * 0.1 + " °C";
-        })
-        .catch(error => console.log('error', error));
-
-
-      // 2nd. Call
-
-
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
-      myHeaders.append("HTTP_ACCEPT", "application/json");
-      myHeaders.append("Accept", "api/v1");
-
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-      fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/568/value", requestOptions)
-        .then(response => response.json())
-        .then(result => {
-          textbox2.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
-        })
-        .catch(error => console.log('error', error));
-
-
-
-
-      // 3rd. Call
-
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
-      myHeaders.append("HTTP_ACCEPT", "application/json");
-      myHeaders.append("Accept", "api/v1");
-
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-      fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/573/value", requestOptions)
-        .then(response => response.json())
-        .then(result => {
-          textbox3.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
-        })
-        .catch(error => console.log('error', error));
-
-
-
-      // 4th Call
-
-
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Basic MkNCRTk3MDAzRUJCOnZacG14eHdVdw==");
-      myHeaders.append("HTTP_ACCEPT", "application/json");
-      myHeaders.append("Accept", "api/v1");
-
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-      fetch("https://api.paradigma.remoteportal.de/controllers/29402/variable/574/value", requestOptions)
-        .then(response => response.json())
-        .then(result => {
-          textbox4.value = Math.round(((result.value * 0.1)*10)/10) + " kWh";
-        })
-        .catch(error => console.log('error', error));
-
-
-    }
-
-
-    // document.getElementById("connect2").onclick = function () {
-
+    fetch("https://api.paradigma.remoteportal.de/controllers", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        const controller_id = result[0]["controller_id"];
+        fetch("https://api.paradigma.remoteportal.de/controllers/"+controller_id, requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            const daySolarEarnings = data.configuration.sensor.find(sensor => sensor.type === 'day_solarearnings');
+            document.getElementById('result').innerHTML = daySolarEarnings.value;
+          })
+          .catch(error => console.error(error));
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
